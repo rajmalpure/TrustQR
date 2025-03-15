@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Respect user's motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  .button-base {
+    @apply relative overflow-hidden transition-all duration-300 ease-out;
+  }
+
+  .button-base::after {
+    @apply absolute inset-0 bg-white opacity-0 transition-opacity duration-300 ease-out content-[''];
+  }
+
+  .button-base:hover::after {
+    @apply opacity-20;
+  }
+
+  .button-base:active::after {
+    @apply opacity-30;
+  }
+
+  .nav-link {
+    @apply relative flex items-center px-4 transition-colors duration-300;
+  }
+
+  .nav-link::after {
+    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 ease-out content-[''];
+  }
+
+  .nav-link:hover::after {
+    @apply w-full;
+  }
+
+  .card-hover {
+    @apply transition-all duration-300 ease-out hover:shadow-lg hover:-translate-y-1;
+  }
+
+  .pulse-animation {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: .5;
+    }
+  }
+}
